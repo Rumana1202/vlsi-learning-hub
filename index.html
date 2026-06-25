@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VLSI Learning Hub</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+}
+
+header{
+background:#0d47a1;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+section{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+box-shadow:0 0 10px lightgray;
+}
+
+button{
+background:#1976d2;
+color:white;
+border:none;
+padding:8px 15px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0d47a1;
+}
+
+input{
+padding:8px;
+margin:5px;
+}
+
+.qa p{
+display:none;
+background:#eef4ff;
+padding:10px;
+}
+
+footer{
+background:#0d47a1;
+color:white;
+text-align:center;
+padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+    <nav style="background:#0d47a1;padding:15px;text-align:center;">
+
+<a href="login.html" style="color:white;">
+Logout
+</a>
+
+</nav>
+
+<header>
+<h1>VLSI Learning Hub</h1>
+<p>Learn • Design • Innovate</p>
+</header>
+
+<section>
+<div class="card">
+<h2>About VLSI</h2>
+<p>
+VLSI (Very Large Scale Integration) is the process of integrating
+millions of transistors into a single chip.
+</p>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Sample Verilog Program</h2>
+
+<pre>
+module and_gate(
+input a,
+input b,
+output y
+);
+
+assign y = a & b;
+
+endmodule
+</pre>
+
+</div>
+</section>
+
+<section>
+<div class="card">
+
+<h2>Quiz (5 Questions)</h2>
+
+<p>1. VLSI stands for?</p>
+<input type="radio" name="q1" value="1"> Very Large Scale Integration
+<input type="radio" name="q1" value="0"> Very Low Scale Integration
+
+<p>2. CMOS means?</p>
+<input type="radio" name="q2" value="1"> Complementary MOS
+<input type="radio" name="q2" value="0"> Common MOS
+
+<p>3. FPGA is?</p>
+<input type="radio" name="q3" value="1"> Reprogrammable
+<input type="radio" name="q3" value="0"> Fixed
+
+<p>4. HDL Example?</p>
+<input type="radio" name="q4" value="1"> Verilog
+<input type="radio" name="q4" value="0"> Excel
+
+<p>5. Intel is?</p>
+<input type="radio" name="q5" value="1"> Chip Company
+<input type="radio" name="q5" value="0"> Movie Company
+
+<br><br>
+
+<button onclick="quizScore()">Submit Quiz</button>
+
+<h3 id="score"></h3>
+
+</div>
+</section>
+
+<section>
+<div class="card">
+
+<h2>Converters</h2>
+
+<h3>Binary to Decimal</h3>
+<input type="text" id="binaryInput">
+<button onclick="convertBinary()">Convert</button>
+<p id="decimalResult"></p>
+
+<h3>Decimal to Binary</h3>
+<input type="number" id="decimalInput">
+<button onclick="convertDecimal()">Convert</button>
+<p id="binaryResult"></p>
+
+<h3>Binary to Octal</h3>
+<input type="text" id="binaryOctal">
+<button onclick="binaryToOctal()">Convert</button>
+<p id="octalResult"></p>
+
+<h3>Decimal to Octal</h3>
+<input type="number" id="decimalOctal">
+<button onclick="decimalToOctal()">Convert</button>
+<p id="decimalOctalResult"></p>
+
+</div>
+</section>
+
+<section>
+<div class="card">
+
+<h2>Interview Questions</h2>
+
+<div class="qa">
+<h3>1. What is VLSI?</h3>
+<button onclick="toggleAnswer('a1')">Answer</button>
+<p id="a1">VLSI integrates millions of transistors into a chip.</p>
+</div>
+
+<div class="qa">
+<h3>2. What is CMOS?</h3>
+<button onclick="toggleAnswer('a2')">Answer</button>
+<p id="a2">Complementary Metal Oxide Semiconductor.</p>
+</div>
+
+<div class="qa">
+<h3>3. FPGA vs ASIC?</h3>
+<button onclick="toggleAnswer('a3')">Answer</button>
+<p id="a3">FPGA is programmable, ASIC is fixed.</p>
+</div>
+
+<div class="qa">
+<h3>4. What is Setup Time?</h3>
+<button onclick="toggleAnswer('a4')">Answer</button>
+<p id="a4">Minimum time before clock edge data must be stable.</p>
+</div>
+
+<div class="qa">
+<h3>5. What is Hold Time?</h3>
+<button onclick="toggleAnswer('a5')">Answer</button>
+<p id="a5">Minimum time after clock edge data must be stable.</p>
+</div>
+
+<div class="qa">
+<h3>6. What is RTL?</h3>
+<button onclick="toggleAnswer('a6')">Answer</button>
+<p id="a6">Register Transfer Level design.</p>
+</div>
+
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Top VLSI Companies</h2>
+
+<ul>
+<li>Intel</li>
+<li>NVIDIA</li>
+<li>AMD</li>
+<li>Qualcomm</li>
+<li>TSMC</li>
+</ul>
+
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Contact</h2>
+
+<p> Email : hasinrumana12@gmail.com</p>
+
+
+</div>
+</section>
+
+<footer>
+<p>© 2026 VLSI Learning Hub</p>
+</footer>
+
+<script>
+
+function quizScore(){
+
+let score=0;
+
+for(let i=1;i<=5;i++){
+
+let ans=document.querySelector('input[name="q'+i+'"]:checked');
+
+if(ans){
+score+=Number(ans.value);
+}
+
+}
+
+document.getElementById("score").innerHTML=
+"Score : "+score+"/5";
+
+}
+
+function convertBinary(){
+
+let binary=document.getElementById("binaryInput").value;
+
+document.getElementById("decimalResult").innerHTML=
+parseInt(binary,2);
+
+}
+
+function convertDecimal(){
+
+let decimal=document.getElementById("decimalInput").value;
+
+document.getElementById("binaryResult").innerHTML=
+Number(decimal).toString(2);
+
+}
+
+function binaryToOctal(){
+
+let binary=document.getElementById("binaryOctal").value;
+
+document.getElementById("octalResult").innerHTML=
+parseInt(binary,2).toString(8);
+
+}
+
+function decimalToOctal(){
+
+let decimal=document.getElementById("decimalOctal").value;
+
+document.getElementById("decimalOctalResult").innerHTML=
+Number(decimal).toString(8);
+
+}
+
+function toggleAnswer(id){
+
+let ans=document.getElementById(id);
+
+if(ans.style.display==="block"){
+ans.style.display="none";
+}
+else{
+ans.style.display="block";
+}
+
+}
+
+</script>
+
+</body>
+</html>
